@@ -18,11 +18,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         simple = findViewById(R.id.simple);
+        advanced = findViewById(R.id.advanced);
 
         simple.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), ActivitySimpleCalc.class));
+            }
+        });
+
+        advanced.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), AdvancedActivity.class));
             }
         });
 
