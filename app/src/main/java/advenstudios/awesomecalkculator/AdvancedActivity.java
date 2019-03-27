@@ -12,7 +12,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import static java.lang.Math.cos;
+import static java.lang.Math.log;
+import static java.lang.Math.log10;
 import static java.lang.Math.sin;
+import static java.lang.Math.sqrt;
+import static java.lang.Math.tan;
 
 public class AdvancedActivity extends AppCompatActivity {
 
@@ -41,6 +45,10 @@ public class AdvancedActivity extends AppCompatActivity {
 
     Button sin;
     Button cos;
+    Button tan;
+    Button log;
+    Button ln;
+    Button sqrt;
 
     ArrayList<Double> listOfNums;
     ArrayList<String> listOfSigns;
@@ -78,6 +86,10 @@ public class AdvancedActivity extends AppCompatActivity {
 
         sin= findViewById(R.id.sin);
         cos= findViewById(R.id.cos);
+        tan= findViewById(R.id.tan);
+        log= findViewById(R.id.log);
+        ln= findViewById(R.id.ln);
+        sqrt= findViewById(R.id.sqrt);
 
         listOfNums= new ArrayList<Double>();
         listOfSigns= new ArrayList<String>();
@@ -117,51 +129,108 @@ public class AdvancedActivity extends AppCompatActivity {
 
         ///////////////// ADVANCED
 
+        sqrt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkIfEmpty()) {
+                    editText.append("sqrt(");
+                    listOfSigns.add("sqrt(");
+                    extended=true;
+                }
+            }
+        });
+
+        ln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkIfEmpty()) {
+                    editText.append("ln(");
+                    listOfSigns.add("ln(");
+                    extended=true;
+                }
+            }
+        });
+
+
+        log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkIfEmpty()) {
+                    editText.append("log(");
+                    listOfSigns.add("log(");
+                    extended=true;
+                }
+            }
+        });
+
+        tan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkIfEmpty()) {
+                    editText.append("tan(");
+                    listOfSigns.add("tan(");
+                    extended=true;
+                }
+            }
+        });
+
         cos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(checkIfEmpty()) {
-                  //  if(isLastTheNumber()) {
                         editText.append("cos(");
                         listOfSigns.add("cos(");
                         extended=true;
-
-
-//                        String str =editText.getText().toString();
-//                        str= str.substring(0, str.length() - 1);
-//                        listOfNums.add(Double.parseDouble(str));
-//                        editText.setText("");
                     }
                 }
-           // }
         });
 
         sin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(checkIfEmpty()) {
-                    //  if(isLastTheNumber()) {
                     editText.append("sin(");
                     listOfSigns.add("sin(");
                     extended=true;
-
-
-//                        String str =editText.getText().toString();
-//                        str= str.substring(0, str.length() - 1);
-//                        listOfNums.add(Double.parseDouble(str));
-//                        editText.setText("");
                 }
             }
-            // }
         });
 
         ////////////////// S I G N S
+
+        eq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!checkIfEmpty()) {
+                    if( !extended && isLastTheNumber() && listOfSigns.size()>0) {
+                        String str =editText.getText().toString();
+                        listOfNums.add(Double.parseDouble(str));
+
+                        editText.setText(performCalculations());
+                        listOfNums.clear();
+                        listOfSigns.clear();
+                    }
+                    else if(extended){
+                        int lengt = listOfSigns.get(0).length();
+                        String str =editText.getText().toString();
+                        str= str.substring(lengt, str.length() );     /// to tylko np sin i cos
+                        listOfNums.add(Double.parseDouble(str));
+
+                        editText.setText(performCalculations());
+                        listOfNums.clear();
+                        listOfSigns.clear();
+                        extended= false;
+                    }
+                }
+            }
+        });
+
 
         plusmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
-                    if(isLastTheNumber()) {
+                    if(isLastTheNumber() && !extended) {
                         if(editText.getText().toString().charAt(0) == '-'){
                             String str = editText.getText().toString();
                             str = str.substring(1, str.length());
@@ -177,37 +246,11 @@ public class AdvancedActivity extends AppCompatActivity {
             }
         });
 
-        eq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!checkIfEmpty()) {
-                    if( !extended && isLastTheNumber() && listOfSigns.size()>0) {
-                        String str =editText.getText().toString();
-                        //str= str.substring(0, str.length() - 1);
-                        listOfNums.add(Double.parseDouble(str));
-
-
-                        editText.setText(performCalculations());
-                        listOfNums.clear();
-                        listOfSigns.clear();
-                    }
-                    else if(extended){
-                        String str =editText.getText().toString();
-                        str= str.substring(4, str.length() );     /// to tylko np sin i cos
-                        listOfNums.add(Double.parseDouble(str));
-
-                        editText.setText(performCalculations());
-                        listOfNums.clear();
-                        listOfSigns.clear();
-                    }
-                }
-            }
-        });
 
         div.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!checkIfEmpty()) {
+                if(!checkIfEmpty() && !extended ) {
                     if(isLastTheNumber()) {
                         editText.append("/");
                         listOfSigns.add("/");
@@ -224,7 +267,7 @@ public class AdvancedActivity extends AppCompatActivity {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!checkIfEmpty()) {
+                if(!checkIfEmpty() && !extended) {
                     if(isLastTheNumber()) {
                         editText.append("+");
                         listOfSigns.add("+");
@@ -241,7 +284,7 @@ public class AdvancedActivity extends AppCompatActivity {
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isLastTheNumber()) {
+                if(isLastTheNumber() && !extended) {
                     editText.append("-");
                     listOfSigns.add("-");
 
@@ -257,7 +300,7 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
-                    if(isLastTheNumber()) {
+                    if(isLastTheNumber() && !extended) {
                         editText.append("x");
                         listOfSigns.add("x");
 
@@ -428,6 +471,18 @@ public class AdvancedActivity extends AppCompatActivity {
                     break;
                 case "cos(":
                     licz = cos(licz);
+                    break;
+                case "tan(":
+                    licz = tan(licz);
+                    break;
+                case "log(":
+                    licz = log10(licz); ///log to jes logarytm naturalny
+                    break;
+                case "ln(":
+                    licz = log(licz); ///log to jes logarytm naturalny
+                    break;
+                case "sqrt(":
+                    licz =sqrt(licz); ///log to jes logarytm naturalny
                     break;
 
             }
