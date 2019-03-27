@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0f0f0f"
     tools:context=".MainActivity">
 
 
@@ -14,6 +15,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="10dp"
         android:layout_marginTop="32dp"
+        android:textColor="#ffeafa"
         android:ems="10"
         android:inputType="textPersonName"
         android:textSize="50dp"

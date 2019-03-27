@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0f0f0f"
     tools:context=".MainActivity">
 
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -270,6 +271,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="22dp"
         android:ems="10"
+        android:textColor="#ffeafa"
         android:inputType="textPersonName"
         android:textSize="50dp"
         android:gravity="right"/>

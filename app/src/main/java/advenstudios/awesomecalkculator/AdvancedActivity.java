@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import static java.lang.Math.cos;
 import static java.lang.Math.log;
 import static java.lang.Math.log10;
+import static java.lang.Math.pow;
 import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.tan;
@@ -50,16 +51,23 @@ public class AdvancedActivity extends AppCompatActivity {
     Button ln;
     Button sqrt;
 
+    Button x2;
+    Button xy;
+
     ArrayList<Double> listOfNums;
     ArrayList<String> listOfSigns;
 
     boolean extended;
+    boolean extended2;
+    static boolean error;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advanced_calc);
 
         extended=false;
+        extended2=false;
+        error =false;
         editText= findViewById(R.id.editText2);
 
         butt1 = findViewById(R.id.one);
@@ -91,8 +99,12 @@ public class AdvancedActivity extends AppCompatActivity {
         ln= findViewById(R.id.ln);
         sqrt= findViewById(R.id.sqrt);
 
+        x2= findViewById(R.id.xs);
+        xy = findViewById(R.id.xy);
+
         listOfNums= new ArrayList<Double>();
         listOfSigns= new ArrayList<String>();
+        ////////////////////////////////////////////////////////////////////////////
 
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,13 +208,45 @@ public class AdvancedActivity extends AppCompatActivity {
             }
         });
 
+        x2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!checkIfEmpty() && !extended && !checkIfError()) {
+                    if (isLastTheNumber() ) {
+                        editText.append("^2");
+                        listOfSigns.add("^2");
+                        extended2 = true;
+                    }
+                }
+            }
+        });
+
+        xy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!checkIfEmpty() && !extended && !checkIfError()) {
+                    if(isLastTheNumber()) {
+                        editText.append("^");
+                        listOfSigns.add("^");
+
+                        String str =editText.getText().toString();
+                        str= str.substring(0, str.length() - 1);
+                        listOfNums.add(Double.parseDouble(str));
+                        editText.setText("");
+                        //extended=true;
+                    }
+                }
+            }
+        });
+
+
         ////////////////// S I G N S
 
         eq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
-                    if( !extended && isLastTheNumber() && listOfSigns.size()>0) {
+                    if( !extended && !extended2 && isLastTheNumber() && listOfSigns.size()>0) {
                         String str =editText.getText().toString();
                         listOfNums.add(Double.parseDouble(str));
 
@@ -213,13 +257,23 @@ public class AdvancedActivity extends AppCompatActivity {
                     else if(extended){
                         int lengt = listOfSigns.get(0).length();
                         String str =editText.getText().toString();
-                        str= str.substring(lengt, str.length() );     /// to tylko np sin i cos
+                        str= str.substring(lengt, str.length() );
                         listOfNums.add(Double.parseDouble(str));
 
                         editText.setText(performCalculations());
                         listOfNums.clear();
                         listOfSigns.clear();
                         extended= false;
+                    }
+                    else if(extended2){
+                        String str =editText.getText().toString();
+                        str= str.substring(0, str.length() -2 );
+                        listOfNums.add(Double.parseDouble(str));
+
+                        editText.setText(performCalculations());
+                        listOfNums.clear();
+                        listOfSigns.clear();
+                        extended2= false;
                     }
                 }
             }
@@ -230,7 +284,7 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
-                    if(isLastTheNumber() && !extended) {
+                    if(isLastTheNumber() && !extended && !checkIfError()) {
                         if(editText.getText().toString().charAt(0) == '-'){
                             String str = editText.getText().toString();
                             str = str.substring(1, str.length());
@@ -250,7 +304,7 @@ public class AdvancedActivity extends AppCompatActivity {
         div.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!checkIfEmpty() && !extended ) {
+                if(!checkIfEmpty() && !extended && !checkIfError()) {
                     if(isLastTheNumber()) {
                         editText.append("/");
                         listOfSigns.add("/");
@@ -267,7 +321,7 @@ public class AdvancedActivity extends AppCompatActivity {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!checkIfEmpty() && !extended) {
+                if(!checkIfEmpty() && !extended && !checkIfError()) {
                     if(isLastTheNumber()) {
                         editText.append("+");
                         listOfSigns.add("+");
@@ -284,7 +338,7 @@ public class AdvancedActivity extends AppCompatActivity {
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isLastTheNumber() && !extended) {
+                if(isLastTheNumber() && !extended && !checkIfError()) {
                     editText.append("-");
                     listOfSigns.add("-");
 
@@ -300,7 +354,7 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
-                    if(isLastTheNumber() && !extended) {
+                    if(isLastTheNumber() && !extended && !checkIfError()) {
                         editText.append("x");
                         listOfSigns.add("x");
 
@@ -319,9 +373,6 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("1");
-//                if(extended){
-//                    listOfNums.add(1.0);
-//                }
             }
         });
 
@@ -329,10 +380,6 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("2");
-//                if(extended){
-//                    listOfNums.add(2.0);
-//                }
-
             }
         });
 
@@ -340,9 +387,6 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("3");
-//                if(extended){
-//                    listOfNums.add(3.0);
-//                }
             }
         });
 
@@ -350,9 +394,6 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("4");
-//                if(extended){
-//                    listOfNums.add(4.0);
-//                }
             }
         });
 
@@ -360,9 +401,6 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("5");
-//                if(extended){
-//                    listOfNums.add(5.0);
-//                }
             }
         });
 
@@ -370,9 +408,6 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("6");
-//                if(extended){
-//                    listOfNums.add(6.0);
-//                }
             }
 
         });
@@ -381,9 +416,6 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("7");
-//                if(extended){
-//                    listOfNums.add(7.0);
-//                }
             }
         });
 
@@ -391,9 +423,7 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("8");
-//                if(extended){
-//                    listOfNums.add(8.0);
-//                }
+
             }
         });
 
@@ -401,9 +431,6 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("9");
-//                if(extended){
-//                    listOfNums.add(9.0);
-//                }
             }
         });
 
@@ -411,9 +438,6 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("0");
-//                if(extended){
-//                    listOfNums.add(0.0);
-//                }
             }
         });
 
@@ -445,9 +469,19 @@ public class AdvancedActivity extends AppCompatActivity {
         return nm;
     }
 
+    boolean checkIfError(){
+
+        boolean b;
+        if(editText.getText().toString().contains("E")){
+            return true;
+        }
+        else
+            return false;
+    }
+
     String performCalculations(){
 
-
+        boolean error =false;
         double licz=listOfNums.get(0);
 
         for(int i=0; i< listOfSigns.size(); i++){
@@ -464,8 +498,14 @@ public class AdvancedActivity extends AppCompatActivity {
                     licz *= listOfNums.get(i + 1);
                     break;
                 case "/":
-                    licz /= listOfNums.get(i + 1);
+                    double temp = listOfNums.get(i + 1);
+                    if(temp != 0)
+                        licz /= temp;
+                    else
+                        error=true;
+
                     break;
+
                 case "sin(":
                     licz = sin(licz);
                     break;
@@ -476,13 +516,21 @@ public class AdvancedActivity extends AppCompatActivity {
                     licz = tan(licz);
                     break;
                 case "log(":
-                    licz = log10(licz); ///log to jes logarytm naturalny
+                    licz = log10(licz);
                     break;
                 case "ln(":
-                    licz = log(licz); ///log to jes logarytm naturalny
+                    licz = log(licz);
                     break;
                 case "sqrt(":
-                    licz =sqrt(licz); ///log to jes logarytm naturalny
+                    licz =sqrt(licz);
+                    break;
+                case "^2":
+                    licz =licz*licz;
+                    break;
+                case "^":
+                    int t = (int)licz;
+                    double tem = listOfNums.get(i + 1);
+                    licz= pow(t, (int)tem);
                     break;
 
             }
@@ -496,23 +544,27 @@ public class AdvancedActivity extends AppCompatActivity {
         //Log.d("tag","to je znak 1: "+String.valueOf(listOfNums.get(1)).toString());
 
         String wynik;
-        if(licz%1 == 0){
-            int tmp =(int)licz;
-            wynik=String.valueOf(tmp);
-        }
-        else if(extended) {
-            licz *= 10000000;
-            licz = Math.round(licz);
-            licz/=10000000;
 
-            wynik=String.valueOf(licz);
+        if(error){
+            wynik="Error!";
         }
         else {
-            licz *= 10000;
-            licz = Math.round(licz);
-            licz/=10000;
+            if (licz % 1 == 0) {
+                int tmp = (int) licz;
+                wynik = String.valueOf(tmp);
+            } else if (extended) {
+                licz *= 10000000;
+                licz = Math.round(licz);
+                licz /= 10000000;
 
-            wynik=String.valueOf(licz);
+                wynik = String.valueOf(licz);
+            } else {
+                licz *= 10000;
+                licz = Math.round(licz);
+                licz /= 10000;
+
+                wynik = String.valueOf(licz);
+            }
         }
 
         return wynik;
