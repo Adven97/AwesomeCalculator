@@ -11,7 +11,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class ActivitySimpleCalc extends AppCompatActivity {
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+
+public class AdvancedActivity extends AppCompatActivity {
 
     TextView editText;
     Button butt1;
@@ -36,16 +39,20 @@ public class ActivitySimpleCalc extends AppCompatActivity {
     Button dot;
     Button plusmin;
 
-    ArrayList<Double> listOfNums;
-    ArrayList<Character> listOfSigns;
+    Button sin;
+    Button cos;
 
+    ArrayList<Double> listOfNums;
+    ArrayList<String> listOfSigns;
+
+    boolean extended;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_simple_calc);
+        setContentView(R.layout.activity_advanced_calc);
 
-
-        editText= findViewById(R.id.editText);
+        extended=false;
+        editText= findViewById(R.id.editText2);
 
         butt1 = findViewById(R.id.one);
         butt2 = findViewById(R.id.two);
@@ -69,8 +76,11 @@ public class ActivitySimpleCalc extends AppCompatActivity {
         dot = findViewById(R.id.dot);
         plusmin = findViewById(R.id.plusmin);
 
+        sin= findViewById(R.id.sin);
+        cos= findViewById(R.id.cos);
+
         listOfNums= new ArrayList<Double>();
-        listOfSigns= new ArrayList<Character>();
+        listOfSigns= new ArrayList<String>();
 
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +115,46 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             }
         });
 
+        ///////////////// ADVANCED
+
+        cos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkIfEmpty()) {
+                  //  if(isLastTheNumber()) {
+                        editText.append("cos(");
+                        listOfSigns.add("cos(");
+                        extended=true;
+
+
+//                        String str =editText.getText().toString();
+//                        str= str.substring(0, str.length() - 1);
+//                        listOfNums.add(Double.parseDouble(str));
+//                        editText.setText("");
+                    }
+                }
+           // }
+        });
+
+        sin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkIfEmpty()) {
+                    //  if(isLastTheNumber()) {
+                    editText.append("sin(");
+                    listOfSigns.add("sin(");
+                    extended=true;
+
+
+//                        String str =editText.getText().toString();
+//                        str= str.substring(0, str.length() - 1);
+//                        listOfNums.add(Double.parseDouble(str));
+//                        editText.setText("");
+                }
+            }
+            // }
+        });
+
         ////////////////// S I G N S
 
         plusmin.setOnClickListener(new View.OnClickListener() {
@@ -131,11 +181,20 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
-                    if(isLastTheNumber() && listOfSigns.size()>0) {
+                    if( !extended && isLastTheNumber() && listOfSigns.size()>0) {
                         String str =editText.getText().toString();
                         //str= str.substring(0, str.length() - 1);
                         listOfNums.add(Double.parseDouble(str));
 
+
+                        editText.setText(performCalculations());
+                        listOfNums.clear();
+                        listOfSigns.clear();
+                    }
+                    else if(extended){
+                        String str =editText.getText().toString();
+                        str= str.substring(4, str.length() );     /// to tylko np sin i cos
+                        listOfNums.add(Double.parseDouble(str));
 
                         editText.setText(performCalculations());
                         listOfNums.clear();
@@ -151,7 +210,7 @@ public class ActivitySimpleCalc extends AppCompatActivity {
                 if(!checkIfEmpty()) {
                     if(isLastTheNumber()) {
                         editText.append("/");
-                        listOfSigns.add('/');
+                        listOfSigns.add("/");
 
                         String str =editText.getText().toString();
                         str= str.substring(0, str.length() - 1);
@@ -168,7 +227,7 @@ public class ActivitySimpleCalc extends AppCompatActivity {
                 if(!checkIfEmpty()) {
                     if(isLastTheNumber()) {
                         editText.append("+");
-                        listOfSigns.add('+');
+                        listOfSigns.add("+");
 
                         String str =editText.getText().toString();
                         str= str.substring(0, str.length() - 1);
@@ -184,7 +243,7 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             public void onClick(View view) {
                 if(isLastTheNumber()) {
                     editText.append("-");
-                    listOfSigns.add('-');
+                    listOfSigns.add("-");
 
                     String str =editText.getText().toString();
                     str= str.substring(0, str.length() - 1);
@@ -200,7 +259,7 @@ public class ActivitySimpleCalc extends AppCompatActivity {
                 if(!checkIfEmpty()) {
                     if(isLastTheNumber()) {
                         editText.append("x");
-                        listOfSigns.add('x');
+                        listOfSigns.add("x");
 
                         String str =editText.getText().toString();
                         str= str.substring(0, str.length() - 1);
@@ -217,6 +276,9 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("1");
+//                if(extended){
+//                    listOfNums.add(1.0);
+//                }
             }
         });
 
@@ -224,6 +286,9 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("2");
+//                if(extended){
+//                    listOfNums.add(2.0);
+//                }
 
             }
         });
@@ -232,6 +297,9 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("3");
+//                if(extended){
+//                    listOfNums.add(3.0);
+//                }
             }
         });
 
@@ -239,6 +307,9 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("4");
+//                if(extended){
+//                    listOfNums.add(4.0);
+//                }
             }
         });
 
@@ -246,6 +317,9 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("5");
+//                if(extended){
+//                    listOfNums.add(5.0);
+//                }
             }
         });
 
@@ -253,13 +327,20 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("6");
+//                if(extended){
+//                    listOfNums.add(6.0);
+//                }
             }
+
         });
 
         butt7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editText.append("7");
+//                if(extended){
+//                    listOfNums.add(7.0);
+//                }
             }
         });
 
@@ -267,6 +348,9 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("8");
+//                if(extended){
+//                    listOfNums.add(8.0);
+//                }
             }
         });
 
@@ -274,6 +358,9 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("9");
+//                if(extended){
+//                    listOfNums.add(9.0);
+//                }
             }
         });
 
@@ -281,6 +368,9 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("0");
+//                if(extended){
+//                    listOfNums.add(0.0);
+//                }
             }
         });
 
@@ -314,26 +404,33 @@ public class ActivitySimpleCalc extends AppCompatActivity {
 
     String performCalculations(){
 
+
         double licz=listOfNums.get(0);
 
         for(int i=0; i< listOfSigns.size(); i++){
-          //  if(i==0) {
-                switch (listOfSigns.get(i)) {
+            //  if(i==0) {
+            switch (listOfSigns.get(i)) {
 
-                    case '+':
-                        licz += listOfNums.get(i + 1);
-                        break;
-                    case '-':
-                        licz -= listOfNums.get(i + 1);
-                        break;
-                    case 'x':
-                        licz *= listOfNums.get(i + 1);
-                        break;
-                    case '/':
-                        licz /= listOfNums.get(i + 1);
-                        break;
+                case "+":
+                    licz += listOfNums.get(i + 1);
+                    break;
+                case "-":
+                    licz -= listOfNums.get(i + 1);
+                    break;
+                case "x":
+                    licz *= listOfNums.get(i + 1);
+                    break;
+                case "/":
+                    licz /= listOfNums.get(i + 1);
+                    break;
+                case "sin(":
+                    licz = sin(licz);
+                    break;
+                case "cos(":
+                    licz = cos(licz);
+                    break;
 
-                }
+            }
         }
 
         Log.d("tag","Toje lista liczb: "+String.valueOf(listOfNums).toString());
@@ -341,12 +438,19 @@ public class ActivitySimpleCalc extends AppCompatActivity {
         Log.d("tag","to jej rozmiar znakuf: "+String.valueOf(listOfSigns.size()).toString());
         Log.d("tag","-----------------");
         Log.d("tag","to je znak 0: "+String.valueOf(listOfNums.get(0)).toString());
-        Log.d("tag","to je znak 1: "+String.valueOf(listOfNums.get(1)).toString());
+        //Log.d("tag","to je znak 1: "+String.valueOf(listOfNums.get(1)).toString());
 
         String wynik;
         if(licz%1 == 0){
             int tmp =(int)licz;
             wynik=String.valueOf(tmp);
+        }
+        else if(extended) {
+            licz *= 10000000;
+            licz = Math.round(licz);
+            licz/=10000000;
+
+            wynik=String.valueOf(licz);
         }
         else {
             licz *= 10000;
