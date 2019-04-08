@@ -11,6 +11,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static java.lang.Math.cos;
+import static java.lang.Math.log;
+import static java.lang.Math.log10;
+import static java.lang.Math.pow;
+import static java.lang.Math.sin;
+import static java.lang.Math.sqrt;
+import static java.lang.Math.tan;
+
 public class ActivitySimpleCalc extends AppCompatActivity {
 
     TextView editText;
@@ -36,14 +44,32 @@ public class ActivitySimpleCalc extends AppCompatActivity {
     Button dot;
     Button plusmin;
 
-    ArrayList<Double> listOfNums;
-    ArrayList<Character> listOfSigns;
+//    Button sin;
+//    Button cos;
+//    Button tan;
+//    Button log;
+//    Button ln;
+//    Button sqrt;
+//
+//    Button x2;
+//    Button xy;
 
+    ArrayList<Double> listOfNums;
+    ArrayList<String> listOfSigns;
+
+    boolean extended;
+    boolean extended2;
+    static boolean error;
+    boolean isDot;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_calc);
 
+        extended=false;
+        extended2=false;
+        error =false;
+        isDot=false;
 
         editText= findViewById(R.id.editText);
 
@@ -69,15 +95,29 @@ public class ActivitySimpleCalc extends AppCompatActivity {
         dot = findViewById(R.id.dot);
         plusmin = findViewById(R.id.plusmin);
 
+//        sin= findViewById(R.id.sin);
+//        cos= findViewById(R.id.cos);
+//        tan= findViewById(R.id.tan);
+//        log= findViewById(R.id.log);
+//        ln= findViewById(R.id.ln);
+//        sqrt= findViewById(R.id.sqrt);
+//
+//        x2= findViewById(R.id.xs);
+//        xy = findViewById(R.id.xy);
+
         listOfNums= new ArrayList<Double>();
-        listOfSigns= new ArrayList<Character>();
+        listOfSigns= new ArrayList<String>();
+        ////////////////////////////////////////////////////////////////////////////
 
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
                     if(isLastTheNumber()) {
-                        editText.append(".");
+                        if(!isDot) {
+                            editText.append(".");
+                            isDot=true;
+                        }
                     }
 
                 }
@@ -105,13 +145,153 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             }
         });
 
+        ///////////////// ADVANCED
+
+//        sqrt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(checkIfEmpty()) {
+//                    editText.append("sqrt(");
+//                    listOfSigns.add("sqrt(");
+//                    extended=true;
+//                }
+//            }
+//        });
+//
+//        ln.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(checkIfEmpty()) {
+//                    editText.append("ln(");
+//                    listOfSigns.add("ln(");
+//                    extended=true;
+//                }
+//            }
+//        });
+//
+//
+//        log.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(checkIfEmpty()) {
+//                    editText.append("log(");
+//                    listOfSigns.add("log(");
+//                    extended=true;
+//                }
+//            }
+//        });
+//
+//        tan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(checkIfEmpty()) {
+//                    editText.append("tan(");
+//                    listOfSigns.add("tan(");
+//                    extended=true;
+//                }
+//            }
+//        });
+//
+//        cos.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(checkIfEmpty()) {
+//                    editText.append("cos(");
+//                    listOfSigns.add("cos(");
+//                    extended=true;
+//                }
+//            }
+//        });
+//
+//        sin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(checkIfEmpty()) {
+//                    editText.append("sin(");
+//                    listOfSigns.add("sin(");
+//                    extended=true;
+//                }
+//            }
+//        });
+//
+//        x2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (!checkIfEmpty() && !extended && !checkIfError()) {
+//                    if (isLastTheNumber() ) {
+//                        editText.append("^2");
+//                        listOfSigns.add("^2");
+//                        extended2 = true;
+//                    }
+//                }
+//            }
+//        });
+//
+//        xy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(!checkIfEmpty() && !extended && !checkIfError()) {
+//                    if(isLastTheNumber()) {
+//                        editText.append("^");
+//                        listOfSigns.add("^");
+//
+//                        String str =editText.getText().toString();
+//                        str= str.substring(0, str.length() - 1);
+//                        listOfNums.add(Double.parseDouble(str));
+//                        editText.setText("");
+//                        //extended=true;
+//                    }
+//                }
+//            }
+//        });
+//
+
         ////////////////// S I G N S
+
+        eq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!checkIfEmpty()) {
+                    if( !extended && !extended2 && isLastTheNumber() && listOfSigns.size()>0) {
+                        String str =editText.getText().toString();
+                        listOfNums.add(Double.parseDouble(str));
+
+                        editText.setText(performCalculations());
+                        listOfNums.clear();
+                        listOfSigns.clear();
+                    }
+                    else if(extended){
+                        int lengt = listOfSigns.get(0).length();
+                        String str =editText.getText().toString();
+                        str= str.substring(lengt, str.length() );
+                        listOfNums.add(Double.parseDouble(str));
+
+                        editText.setText(performCalculations());
+                        listOfNums.clear();
+                        listOfSigns.clear();
+                        extended= false;
+                    }
+                    else if(extended2){
+                        String str =editText.getText().toString();
+                        str= str.substring(0, str.length() -2 );
+                        listOfNums.add(Double.parseDouble(str));
+
+                        editText.setText(performCalculations());
+                        listOfNums.clear();
+                        listOfSigns.clear();
+                        extended2= false;
+                    }
+                    isDot=false;
+                }
+            }
+        });
+
 
         plusmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
-                    if(isLastTheNumber()) {
+                    if(isLastTheNumber() && !extended && !checkIfError()) {
                         if(editText.getText().toString().charAt(0) == '-'){
                             String str = editText.getText().toString();
                             str = str.substring(1, str.length());
@@ -127,36 +307,21 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             }
         });
 
-        eq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!checkIfEmpty()) {
-                    if(isLastTheNumber() && listOfSigns.size()>0) {
-                        String str =editText.getText().toString();
-                        //str= str.substring(0, str.length() - 1);
-                        listOfNums.add(Double.parseDouble(str));
-
-
-                        editText.setText(performCalculations());
-                        listOfNums.clear();
-                        listOfSigns.clear();
-                    }
-                }
-            }
-        });
 
         div.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!checkIfEmpty()) {
+                if(!checkIfEmpty() && !extended && !checkIfError()) {
                     if(isLastTheNumber()) {
                         editText.append("/");
-                        listOfSigns.add('/');
+                        listOfSigns.add("/");
 
                         String str =editText.getText().toString();
                         str= str.substring(0, str.length() - 1);
                         listOfNums.add(Double.parseDouble(str));
                         editText.setText("");
+
+                        isDot=false;
                     }
                 }
             }
@@ -165,15 +330,17 @@ public class ActivitySimpleCalc extends AppCompatActivity {
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!checkIfEmpty()) {
+                if(!checkIfEmpty() && !extended && !checkIfError()) {
                     if(isLastTheNumber()) {
                         editText.append("+");
-                        listOfSigns.add('+');
+                        listOfSigns.add("+");
 
                         String str =editText.getText().toString();
                         str= str.substring(0, str.length() - 1);
                         listOfNums.add(Double.parseDouble(str));
                         editText.setText("");
+
+                        isDot=false;
                     }
                 }
             }
@@ -182,14 +349,16 @@ public class ActivitySimpleCalc extends AppCompatActivity {
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(isLastTheNumber()) {
+                if(isLastTheNumber() && !extended && !checkIfError()) {
                     editText.append("-");
-                    listOfSigns.add('-');
+                    listOfSigns.add("-");
 
                     String str =editText.getText().toString();
                     str= str.substring(0, str.length() - 1);
                     listOfNums.add(Double.parseDouble(str));
                     editText.setText("");
+
+                    isDot=false;
                 }
             }
         });
@@ -198,14 +367,16 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
-                    if(isLastTheNumber()) {
+                    if(isLastTheNumber() && !extended && !checkIfError()) {
                         editText.append("x");
-                        listOfSigns.add('x');
+                        listOfSigns.add("x");
 
                         String str =editText.getText().toString();
                         str= str.substring(0, str.length() - 1);
                         listOfNums.add(Double.parseDouble(str));
                         editText.setText("");
+
+                        isDot=false;
                     }
                 }
             }
@@ -224,7 +395,6 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("2");
-
             }
         });
 
@@ -254,6 +424,7 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             public void onClick(View view) {
                 editText.append("6");
             }
+
         });
 
         butt7.setOnClickListener(new View.OnClickListener() {
@@ -267,6 +438,7 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 editText.append("8");
+
             }
         });
 
@@ -312,28 +484,71 @@ public class ActivitySimpleCalc extends AppCompatActivity {
         return nm;
     }
 
+    boolean checkIfError(){
+
+        boolean b;
+        if(editText.getText().toString().contains("E")){
+            return true;
+        }
+        else
+            return false;
+    }
+
     String performCalculations(){
 
+        boolean error =false;
         double licz=listOfNums.get(0);
 
         for(int i=0; i< listOfSigns.size(); i++){
-          //  if(i==0) {
-                switch (listOfSigns.get(i)) {
+            //  if(i==0) {
+            switch (listOfSigns.get(i)) {
 
-                    case '+':
-                        licz += listOfNums.get(i + 1);
-                        break;
-                    case '-':
-                        licz -= listOfNums.get(i + 1);
-                        break;
-                    case 'x':
-                        licz *= listOfNums.get(i + 1);
-                        break;
-                    case '/':
-                        licz /= listOfNums.get(i + 1);
-                        break;
+                case "+":
+                    licz += listOfNums.get(i + 1);
+                    break;
+                case "-":
+                    licz -= listOfNums.get(i + 1);
+                    break;
+                case "x":
+                    licz *= listOfNums.get(i + 1);
+                    break;
+                case "/":
+                    double temp = listOfNums.get(i + 1);
+                    if(temp != 0)
+                        licz /= temp;
+                    else
+                        error=true;
 
-                }
+                    break;
+
+//                case "sin(":
+//                    licz = sin(licz);
+//                    break;
+//                case "cos(":
+//                    licz = cos(licz);
+//                    break;
+//                case "tan(":
+//                    licz = tan(licz);
+//                    break;
+//                case "log(":
+//                    licz = log10(licz);
+//                    break;
+//                case "ln(":
+//                    licz = log(licz);
+//                    break;
+//                case "sqrt(":
+//                    licz =sqrt(licz);
+//                    break;
+//                case "^2":
+//                    licz =licz*licz;
+//                    break;
+//                case "^":
+//                    int t = (int)licz;
+//                    double tem = listOfNums.get(i + 1);
+//                    licz= pow(t, (int)tem);
+//                    break;
+
+            }
         }
 
         Log.d("tag","Toje lista liczb: "+String.valueOf(listOfNums).toString());
@@ -341,19 +556,30 @@ public class ActivitySimpleCalc extends AppCompatActivity {
         Log.d("tag","to jej rozmiar znakuf: "+String.valueOf(listOfSigns.size()).toString());
         Log.d("tag","-----------------");
         Log.d("tag","to je znak 0: "+String.valueOf(listOfNums.get(0)).toString());
-        Log.d("tag","to je znak 1: "+String.valueOf(listOfNums.get(1)).toString());
+        //Log.d("tag","to je znak 1: "+String.valueOf(listOfNums.get(1)).toString());
 
         String wynik;
-        if(licz%1 == 0){
-            int tmp =(int)licz;
-            wynik=String.valueOf(tmp);
+
+        if(error){
+            wynik="Error!";
         }
         else {
-            licz *= 10000;
-            licz = Math.round(licz);
-            licz/=10000;
+            if (licz % 1 == 0) {
+                int tmp = (int) licz;
+                wynik = String.valueOf(tmp);
+            } else if (extended) {
+                licz *= 10000000;
+                licz = Math.round(licz);
+                licz /= 10000000;
 
-            wynik=String.valueOf(licz);
+                wynik = String.valueOf(licz);
+            } else {
+                licz *= 10000;
+                licz = Math.round(licz);
+                licz /= 10000;
+
+                wynik = String.valueOf(licz);
+            }
         }
 
         return wynik;

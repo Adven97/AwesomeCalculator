@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
         simple = findViewById(R.id.simple);
         advanced = findViewById(R.id.advanced);
+        about = findViewById(R.id.about);
+        exit = findViewById(R.id.exit);
 
         simple.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +36,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), AdvancedActivity.class));
             }
         });
+
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), AboutActivity.class));
+            }
+        });
+
+        exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+               // System.exit(0);
+            }
+        });
+
 
     }
 }

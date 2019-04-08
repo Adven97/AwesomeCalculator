@@ -60,6 +60,7 @@ public class AdvancedActivity extends AppCompatActivity {
     boolean extended;
     boolean extended2;
     static boolean error;
+    boolean isDot;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +69,8 @@ public class AdvancedActivity extends AppCompatActivity {
         extended=false;
         extended2=false;
         error =false;
+        isDot=false;
+
         editText= findViewById(R.id.editText2);
 
         butt1 = findViewById(R.id.one);
@@ -111,7 +114,10 @@ public class AdvancedActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
                     if(isLastTheNumber()) {
-                        editText.append(".");
+                        if(!isDot) {
+                            editText.append(".");
+                            isDot=true;
+                        }
                     }
 
                 }
@@ -275,6 +281,7 @@ public class AdvancedActivity extends AppCompatActivity {
                         listOfSigns.clear();
                         extended2= false;
                     }
+                    isDot=false;
                 }
             }
         });
@@ -313,6 +320,8 @@ public class AdvancedActivity extends AppCompatActivity {
                         str= str.substring(0, str.length() - 1);
                         listOfNums.add(Double.parseDouble(str));
                         editText.setText("");
+
+                        isDot=false;
                     }
                 }
             }
@@ -330,6 +339,8 @@ public class AdvancedActivity extends AppCompatActivity {
                         str= str.substring(0, str.length() - 1);
                         listOfNums.add(Double.parseDouble(str));
                         editText.setText("");
+
+                        isDot=false;
                     }
                 }
             }
@@ -346,6 +357,8 @@ public class AdvancedActivity extends AppCompatActivity {
                     str= str.substring(0, str.length() - 1);
                     listOfNums.add(Double.parseDouble(str));
                     editText.setText("");
+
+                    isDot=false;
                 }
             }
         });
@@ -362,6 +375,8 @@ public class AdvancedActivity extends AppCompatActivity {
                         str= str.substring(0, str.length() - 1);
                         listOfNums.add(Double.parseDouble(str));
                         editText.setText("");
+
+                        isDot=false;
                     }
                 }
             }
