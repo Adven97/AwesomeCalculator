@@ -68,7 +68,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0sp"
-            android:layout_marginTop="200sp"
+            android:layout_marginTop="170sp"
             android:text="7" />
 
         <Button
@@ -79,7 +79,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="200sp"
+            android:layout_marginTop="170sp"
             android:text="8" />
 
         <Button
@@ -90,7 +90,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="200sp"
+            android:layout_marginTop="170sp"
             android:text="9" />
 
         <Button
@@ -101,7 +101,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="200sp"
+            android:layout_marginTop="170sp"
             android:text="/" />
 
     </LinearLayout>
@@ -123,7 +123,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0sp"
-            android:layout_marginTop="300sp"
+            android:layout_marginTop="240sp"
             android:text="4" />
 
         <Button
@@ -134,7 +134,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="300sp"
+            android:layout_marginTop="240sp"
             android:text="5" />
 
         <Button
@@ -145,7 +145,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="300sp"
+            android:layout_marginTop="240sp"
             android:text="6" />
 
         <Button
@@ -156,7 +156,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="300sp"
+            android:layout_marginTop="240sp"
             android:text="*" />
 
     </LinearLayout>
@@ -178,7 +178,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0sp"
-            android:layout_marginTop="400sp"
+            android:layout_marginTop="310sp"
             android:text="1" />
 
         <Button
@@ -189,7 +189,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="400sp"
+            android:layout_marginTop="310sp"
             android:text="2" />
 
         <Button
@@ -200,7 +200,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="400sp"
+            android:layout_marginTop="310sp"
             android:text="3" />
 
         <Button
@@ -211,7 +211,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="400sp"
+            android:layout_marginTop="310sp"
             android:text="-" />
 
     </LinearLayout>
@@ -234,7 +234,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0sp"
-            android:layout_marginTop="500sp"
+            android:layout_marginTop="380sp"
             android:text="0" />
 
         <Button
@@ -245,7 +245,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="500sp"
+            android:layout_marginTop="380sp"
             android:text="." />
 
         <Button
@@ -256,7 +256,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="500sp"
+            android:layout_marginTop="380sp"
             android:text="=" />
 
         <Button
@@ -267,7 +267,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
-            android:layout_marginTop="500sp"
+            android:layout_marginTop="380sp"
             android:text="+" />
 
     </LinearLayout>
