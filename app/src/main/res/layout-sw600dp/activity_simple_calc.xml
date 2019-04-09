@@ -18,7 +18,7 @@
             android:id="@+id/bksp"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0sp"
@@ -29,10 +29,10 @@
             android:id="@+id/c"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="100sp"
             android:text="C" />
 
@@ -40,12 +40,12 @@
             android:id="@+id/plusmin"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="100sp"
-            android:text="+-" />
+            android:text="±" />
 
 
     </LinearLayout>
@@ -64,7 +64,7 @@
             android:id="@+id/seven"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0sp"
@@ -75,10 +75,10 @@
             android:id="@+id/eight"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="200sp"
             android:text="8" />
 
@@ -86,10 +86,10 @@
             android:id="@+id/nine"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="200sp"
             android:text="9" />
 
@@ -97,10 +97,10 @@
             android:id="@+id/div"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="200sp"
             android:text="/" />
 
@@ -119,7 +119,7 @@
             android:id="@+id/four"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0sp"
@@ -130,10 +130,10 @@
             android:id="@+id/five"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="300sp"
             android:text="5" />
 
@@ -141,10 +141,10 @@
             android:id="@+id/six"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="300sp"
             android:text="6" />
 
@@ -152,10 +152,10 @@
             android:id="@+id/multiply"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="300sp"
             android:text="*" />
 
@@ -174,7 +174,7 @@
             android:id="@+id/one"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0sp"
@@ -185,10 +185,10 @@
             android:id="@+id/two"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="400sp"
             android:text="2" />
 
@@ -196,10 +196,10 @@
             android:id="@+id/three"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="400sp"
             android:text="3" />
 
@@ -207,10 +207,10 @@
             android:id="@+id/minus"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="400sp"
             android:text="-" />
 
@@ -230,7 +230,7 @@
             android:id="@+id/zero"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0sp"
@@ -241,10 +241,10 @@
             android:id="@+id/dot"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="500sp"
             android:text="." />
 
@@ -252,10 +252,10 @@
             android:id="@+id/equals"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="500sp"
             android:text="=" />
 
@@ -263,10 +263,10 @@
             android:id="@+id/plus"
             android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="70sp"
+            android:layout_height="90sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10sp"
+            android:layout_marginStart="0sp"
             android:layout_marginTop="500sp"
             android:text="+" />
 

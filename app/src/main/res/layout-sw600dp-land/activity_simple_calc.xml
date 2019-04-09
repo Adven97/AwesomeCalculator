@@ -45,7 +45,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="10sp"
             android:layout_marginTop="100sp"
-            android:text="+-" />
+            android:text="±" />
 
 
     </LinearLayout>

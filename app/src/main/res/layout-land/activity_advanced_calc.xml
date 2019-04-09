@@ -1,401 +1,394 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0f0f0f"
-    tools:context=".MainActivity">
+    android:background="#0f0f0f">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:orientation="horizontal" >
+        android:paddingLeft="16sp"
+        android:paddingRight="16sp"
+        android:orientation="vertical" >
 
-
-        <Button
-            android:id="@+id/bksp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60sp"
+        <TextView
+            android:id="@+id/editText2"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="100dp"
-            android:text="Bksp" />
-
-        <Button
-            android:id="@+id/c"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60sp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="100dp"
-            android:text="C" />
-
-        <Button
-            android:id="@+id/plusmin"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60sp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="100dp"
-            android:text="+-" />
-
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="30sp"
+            android:textColor="#ffeafa"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textSize="40sp"
+            android:gravity="right"
+            />
 
     </LinearLayout>
 
 
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/sin"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60sp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="170dp"
-            android:text="sin" />
-
-        <Button
-            android:id="@+id/cos"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60sp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="170dp"
-            android:text="cos" />
-
-        <Button
-            android:id="@+id/tan"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60sp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="170dp"
-            android:text="tan" />
-
-        <Button
-            android:id="@+id/ln"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60sp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="170dp"
-            android:text="ln" />
-
-    </LinearLayout>
-
-    <!---com*****************************************************************************mment_-->
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/sqrt"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60sp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="240dp"
-            android:text="sqrt" />
-
-        <Button
-            android:id="@+id/xs"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60sp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="240dp"
-            android:text="x^2" />
-
-        <Button
-            android:id="@+id/xy"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60sp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="240dp"
-            android:text="x^y" />
-
-        <Button
-            android:id="@+id/log"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="60sp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="240dp"
-            android:text="log" />
-
-    </LinearLayout>
-
-    <!---com*****************************************************************************mment_-->
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="16sp"
+        android:paddingRight="16sp"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/seven"
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="80sp"
+
             android:text="7" />
 
         <Button
             android:id="@+id/eight"
-            android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_width="0sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="80sp"
             android:text="8" />
 
         <Button
             android:id="@+id/nine"
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="310dp"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="80sp"
             android:text="9" />
 
         <Button
-            android:id="@+id/div"
-            android:layout_width="0dp"
+            android:id="@+id/plusmin"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="310dp"
-            android:text="/" />
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="80sp"
+            android:text="±" />
+
+        <Button
+            android:id="@+id/plus"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="50sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="80sp"
+            android:text="+" />
+
+        <Button
+            android:id="@+id/minus"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="50sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="80sp"
+            android:text="-" />
+
+
 
     </LinearLayout>
 
-    <!---com*****************************************************************************mment_-->
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="16sp"
+        android:paddingRight="16sp"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/four"
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="380dp"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="130sp"
             android:text="4" />
 
         <Button
             android:id="@+id/five"
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="380dp"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="130sp"
             android:text="5" />
 
         <Button
             android:id="@+id/six"
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="380dp"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="130sp"
             android:text="6" />
 
         <Button
-            android:id="@+id/multiply"
-            android:layout_width="0dp"
+            android:id="@+id/dot"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="380dp"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="130sp"
+            android:text="." />
+
+        <Button
+            android:id="@+id/multiply"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="50sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="130sp"
             android:text="*" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/div"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="50sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="130sp"
+            android:text="/" />
 
-    <!---com*****************************************************************************mment_-->
+    </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="16sp"
+        android:paddingRight="16sp"
         android:orientation="horizontal" >
 
         <Button
             android:id="@+id/one"
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="450dp"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="180sp"
             android:text="1" />
 
         <Button
             android:id="@+id/two"
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="450dp"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="180sp"
             android:text="2" />
 
         <Button
             android:id="@+id/three"
-            android:layout_width="0dp"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="450dp"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="180sp"
             android:text="3" />
 
         <Button
-            android:id="@+id/minus"
-            android:layout_width="0dp"
+            android:id="@+id/zero"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="450dp"
-            android:text="-" />
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="180sp"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/bksp"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="50sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="180sp"
+            android:text="bksp" />
+
+
+        <Button
+            android:id="@+id/c"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="50sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="180sp"
+            android:text="C" />
+
 
     </LinearLayout>
-
-    <!---com*****************************************************************************mment_-->
-
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:paddingLeft="16sp"
+        android:paddingRight="16sp"
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/zero"
-            android:layout_width="0dp"
+            android:id="@+id/sin"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
+            android:backgroundTint="#282828"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="520dp"
-            android:text="0" />
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="230sp"
+            android:text="sin" />
 
         <Button
-            android:id="@+id/dot"
-            android:layout_width="0dp"
+            android:id="@+id/cos"
+            android:backgroundTint="#282828"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="520dp"
-            android:text="." />
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="230sp"
+            android:text="cos" />
 
         <Button
-            android:id="@+id/equals"
-            android:layout_width="0dp"
+            android:id="@+id/tan"
+            android:backgroundTint="#282828"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="520dp"
-            android:text="=" />
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="230sp"
+            android:text="tan" />
 
         <Button
-            android:id="@+id/plus"
-            android:layout_width="0dp"
+            android:id="@+id/ln"
+            android:backgroundTint="#282828"
+            android:layout_width="0sp"
             android:layout_weight="1"
-            android:layout_height="60sp"
+            android:layout_height="50sp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="520dp"
-            android:text="+" />
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="230sp"
+            android:text="ln" />
+
+
+
+
+        <Button
+            android:id="@+id/sqrt"
+            android:backgroundTint="#282828"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="50sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="230sp"
+            android:text="√" />
+
+        <Button
+            android:id="@+id/xs"
+            android:backgroundTint="#282828"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="50sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="230sp"
+            android:text="x^2" />
+
+        <Button
+            android:id="@+id/xy"
+            android:backgroundTint="#282828"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="50sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="230sp"
+            android:text="x^y" />
+
+        <Button
+            android:id="@+id/log"
+            android:backgroundTint="#282828"
+            android:layout_width="0sp"
+            android:layout_weight="1"
+            android:layout_height="50sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="230sp"
+            android:text="log" />
+
 
     </LinearLayout>
 
-    <!---com*****************************************************************************mment_-->
-
-
-    <TextView
-        android:id="@+id/editText2"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="18dp"
-        android:ems="10"
-        android:textColor="#ffeafa"
-        android:inputType="textPersonName"
-        android:textSize="50dp"
-        android:gravity="right"/>
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:paddingLeft="16sp"
+        android:paddingRight="16sp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/equals"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0sp"
+            android:layout_marginTop="280sp"
+            android:text="=" />
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

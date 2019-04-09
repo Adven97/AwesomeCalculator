@@ -44,16 +44,6 @@ public class ActivitySimpleCalc extends AppCompatActivity {
     Button dot;
     Button plusmin;
 
-//    Button sin;
-//    Button cos;
-//    Button tan;
-//    Button log;
-//    Button ln;
-//    Button sqrt;
-//
-//    Button x2;
-//    Button xy;
-
     ArrayList<Double> listOfNums;
     ArrayList<String> listOfSigns;
 
@@ -61,6 +51,20 @@ public class ActivitySimpleCalc extends AppCompatActivity {
     boolean extended2;
     static boolean error;
     boolean isDot;
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        outState.putString("wynik", editText.getText().toString());
+        outState.putStringArrayList("listOfSignsTmp", listOfSigns);
+
+        Double[] db = listOfNums.toArray(new Double[listOfNums.size()]);
+//        double[] dd2 = (doub)
+        outState.putSerializable("doble", listOfNums);
+        // outState.putParcelableArrayList("listOfNumsTmp", listOfNums);
+
+        super.onSaveInstanceState(outState);
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,19 +99,19 @@ public class ActivitySimpleCalc extends AppCompatActivity {
         dot = findViewById(R.id.dot);
         plusmin = findViewById(R.id.plusmin);
 
-//        sin= findViewById(R.id.sin);
-//        cos= findViewById(R.id.cos);
-//        tan= findViewById(R.id.tan);
-//        log= findViewById(R.id.log);
-//        ln= findViewById(R.id.ln);
-//        sqrt= findViewById(R.id.sqrt);
-//
-//        x2= findViewById(R.id.xs);
-//        xy = findViewById(R.id.xy);
-
         listOfNums= new ArrayList<Double>();
         listOfSigns= new ArrayList<String>();
-        ////////////////////////////////////////////////////////////////////////////
+
+        if(savedInstanceState !=null){
+            String tmp = savedInstanceState.getString("wynik");
+            editText.setText(tmp);
+
+            ArrayList<String> listOfSignsTmp = savedInstanceState.getStringArrayList("listOfSignsTmp");
+            listOfSigns = listOfSignsTmp;
+
+            //Serializable listOfn = savedInstanceState.getSerializable("doble");
+            listOfNums = (ArrayList<Double>) savedInstanceState.getSerializable("doble");
+        }
 
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,108 +149,6 @@ public class ActivitySimpleCalc extends AppCompatActivity {
             }
         });
 
-        ///////////////// ADVANCED
-
-//        sqrt.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(checkIfEmpty()) {
-//                    editText.append("sqrt(");
-//                    listOfSigns.add("sqrt(");
-//                    extended=true;
-//                }
-//            }
-//        });
-//
-//        ln.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(checkIfEmpty()) {
-//                    editText.append("ln(");
-//                    listOfSigns.add("ln(");
-//                    extended=true;
-//                }
-//            }
-//        });
-//
-//
-//        log.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(checkIfEmpty()) {
-//                    editText.append("log(");
-//                    listOfSigns.add("log(");
-//                    extended=true;
-//                }
-//            }
-//        });
-//
-//        tan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(checkIfEmpty()) {
-//                    editText.append("tan(");
-//                    listOfSigns.add("tan(");
-//                    extended=true;
-//                }
-//            }
-//        });
-//
-//        cos.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(checkIfEmpty()) {
-//                    editText.append("cos(");
-//                    listOfSigns.add("cos(");
-//                    extended=true;
-//                }
-//            }
-//        });
-//
-//        sin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(checkIfEmpty()) {
-//                    editText.append("sin(");
-//                    listOfSigns.add("sin(");
-//                    extended=true;
-//                }
-//            }
-//        });
-//
-//        x2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (!checkIfEmpty() && !extended && !checkIfError()) {
-//                    if (isLastTheNumber() ) {
-//                        editText.append("^2");
-//                        listOfSigns.add("^2");
-//                        extended2 = true;
-//                    }
-//                }
-//            }
-//        });
-//
-//        xy.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(!checkIfEmpty() && !extended && !checkIfError()) {
-//                    if(isLastTheNumber()) {
-//                        editText.append("^");
-//                        listOfSigns.add("^");
-//
-//                        String str =editText.getText().toString();
-//                        str= str.substring(0, str.length() - 1);
-//                        listOfNums.add(Double.parseDouble(str));
-//                        editText.setText("");
-//                        //extended=true;
-//                    }
-//                }
-//            }
-//        });
-//
-
-        ////////////////// S I G N S
 
         eq.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -520,33 +422,6 @@ public class ActivitySimpleCalc extends AppCompatActivity {
                         error=true;
 
                     break;
-
-//                case "sin(":
-//                    licz = sin(licz);
-//                    break;
-//                case "cos(":
-//                    licz = cos(licz);
-//                    break;
-//                case "tan(":
-//                    licz = tan(licz);
-//                    break;
-//                case "log(":
-//                    licz = log10(licz);
-//                    break;
-//                case "ln(":
-//                    licz = log(licz);
-//                    break;
-//                case "sqrt(":
-//                    licz =sqrt(licz);
-//                    break;
-//                case "^2":
-//                    licz =licz*licz;
-//                    break;
-//                case "^":
-//                    int t = (int)licz;
-//                    double tem = listOfNums.get(i + 1);
-//                    licz= pow(t, (int)tem);
-//                    break;
 
             }
         }

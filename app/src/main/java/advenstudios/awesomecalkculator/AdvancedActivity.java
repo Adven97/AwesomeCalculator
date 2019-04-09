@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import static java.lang.Math.cos;
@@ -64,24 +65,31 @@ public class AdvancedActivity extends AppCompatActivity {
     boolean isDot;
 
     @Override
-    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
-
+    public void onSaveInstanceState(Bundle outState) {
 
         outState.putString("wynik", editText.getText().toString());
+        outState.putStringArrayList("listOfSignsTmp", listOfSigns);
 
-        super.onSaveInstanceState(outState, outPersistentState);
+        Double[] db = listOfNums.toArray(new Double[listOfNums.size()]);
+//        double[] dd2 = (doub)
+        outState.putSerializable("doble", listOfNums);
+       // outState.putParcelableArrayList("listOfNumsTmp", listOfNums);
+
+        super.onSaveInstanceState(outState);
     }
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        //editText.setText(savedInstanceState.getString("wynik"));
-    }
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//
+//        //editText.setText(savedInstanceState.getString("wynik"));
+//    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advanced_calc);
+
+
 
         extended=false;
         extended2=false;
@@ -126,6 +134,17 @@ public class AdvancedActivity extends AppCompatActivity {
         listOfSigns= new ArrayList<String>();
         ////////////////////////////////////////////////////////////////////////////
 
+        if(savedInstanceState !=null){
+            String tmp = savedInstanceState.getString("wynik");
+            editText.setText(tmp);
+
+            ArrayList<String> listOfSignsTmp = savedInstanceState.getStringArrayList("listOfSignsTmp");
+            listOfSigns = listOfSignsTmp;
+
+            //Serializable listOfn = savedInstanceState.getSerializable("doble");
+            listOfNums = (ArrayList<Double>) savedInstanceState.getSerializable("doble");
+        }
+
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,9 +164,43 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
-                    String str =editText.getText().toString();
-                    str= str.substring(0, str.length() - 1);
-                    editText.setText(str);
+                    if(editText.getText().toString().equals("ln(")){
+                        listOfSigns.remove("ln(");
+                        editText.setText("");
+                        extended=false;
+                    }
+                    else if(editText.getText().toString().equals("log(")){
+                        listOfSigns.remove("log(");
+                        editText.setText("");
+                        extended=false;
+                    }
+
+                    else if(editText.getText().toString().equals("tan(")){
+                        listOfSigns.remove("tan(");
+                        editText.setText("");
+                        extended=false;
+                    }
+
+                    else if(editText.getText().toString().equals("sin(")){
+                        listOfSigns.remove("sin(");
+                        editText.setText("");
+                        extended=false;
+                    }
+                    else if(editText.getText().toString().equals("cos(")){
+                        listOfSigns.remove("cos(");
+                        editText.setText("");
+                        extended=false;
+                    }
+                    else if(editText.getText().toString().equals("√")){
+                        listOfSigns.remove("√");
+                        editText.setText("");
+                        extended=false;
+                    }
+                    else {
+                        String str = editText.getText().toString();
+                        str = str.substring(0, str.length() - 1);
+                        editText.setText(str);
+                    }
 
                 }
             }
@@ -157,6 +210,31 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!checkIfEmpty()) {
+                    if(editText.getText().toString().equals("ln(")){
+                        listOfSigns.remove("ln(");
+                        extended=false;
+                    }
+                    else if(editText.getText().toString().equals("log(")){
+                        listOfSigns.remove("log(");
+                        extended=false;
+                    }
+                    else if(editText.getText().toString().equals("tan(")){
+                        listOfSigns.remove("tan(");
+                        extended=false;
+                    }
+                    else if(editText.getText().toString().equals("sin(")){
+                        listOfSigns.remove("sin(");
+                        extended=false;
+                    }
+                    else if(editText.getText().toString().equals("cos(")){
+                        listOfSigns.remove("cos(");
+                        extended=false;
+                    }
+                    else if(editText.getText().toString().equals("√")){
+                        listOfSigns.remove("√");
+                        extended=false;
+                    }
+
                     editText.setText("");
                 }
             }
@@ -168,8 +246,8 @@ public class AdvancedActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(checkIfEmpty()) {
-                    editText.append("sqrt(");
-                    listOfSigns.add("sqrt(");
+                    editText.append("√");
+                    listOfSigns.add("√");
                     extended=true;
                 }
             }
@@ -553,7 +631,7 @@ public class AdvancedActivity extends AppCompatActivity {
                 case "ln(":
                     licz = log(licz);
                     break;
-                case "sqrt(":
+                case "√":
                     licz =sqrt(licz);
                     break;
                 case "^2":
