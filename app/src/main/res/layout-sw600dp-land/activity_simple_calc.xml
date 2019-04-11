@@ -275,18 +275,18 @@
     <!---com*****************************************************************************mment_-->
 
 
-    <TextView
+    <EditText
         android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60sp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0sp"
-        android:layout_marginTop="20sp"
-        android:layout_marginEnd="18sp"
-        android:ems="10"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
         android:textColor="#ffeafa"
+        android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="50sp"
-        android:gravity="right"/>
+        android:textSize="36sp"
+        android:gravity="right"
+        />
 </RelativeLayout>
